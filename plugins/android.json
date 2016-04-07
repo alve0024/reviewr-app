@@ -1,0 +1,24 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "ca.edumedia.alve0024.reviewer"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "ca.edumedia.alve0024.reviewer"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "ca.edumedia.alve0024.reviewer"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "ca.edumedia.alve0024.reviewer"
+        }
+    },
+    "dependent_plugins": {}
+}

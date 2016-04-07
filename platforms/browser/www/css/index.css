@@ -1,0 +1,458 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+  background-color: #E4E4E4;
+  background-image: linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+  background-image: -webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+  background-image: -ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+  background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0, #A7A7A7), color-stop(0.51, #E4E4E4));
+  background-attachment: fixed;
+  font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  /*  text-transform: uppercase;*/
+  width: 100%;
+}
+
+
+/* Portrait layout (default) */
+
+.app {
+  background: url(../img/logo.png) no-repeat center top;
+  /* 170px x 200px */
+  position: absolute;
+  /* position in the center of the screen */
+  left: 50%;
+  top: 50%;
+  height: 50px;
+  /* text area height */
+  width: 225px;
+  /* text area width */
+  text-align: center;
+  padding: 180px 0px 0px 0px;
+  /* image height is 200px (bottom 20px are overlapped with text) */
+  margin: -115px 0px 0px -112px;
+  /* offset vertical: half of image height and text area height */
+  /* offset horizontal: half of text area width */
+}
+
+
+/* Landscape layout (with min-width) */
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+  .app {
+    background-position: left center;
+    padding: 75px 0px 75px 170px;
+    /* padding-top + padding-bottom + text area = image height */
+    margin: -90px 0px 0px -198px;
+    /* offset vertical: half of image height */
+    /* offset horizontal: half of image width and text area width */
+  }
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0px;
+  overflow: visible;
+  padding: 0px;
+  text-align: center;
+}
+
+.event {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin: 0px 30px;
+  padding: 2px 0px;
+}
+
+.event.listening {
+  background-color: #333333;
+  display: block;
+}
+
+.event.received {
+  background-color: #4B946A;
+  display: none;
+}
+
+@keyframes fade {
+  from {
+    opacity: 1.0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 1.0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
+
+.blink {
+  animation: fade 3000ms infinite;
+  -webkit-animation: fade 3000ms infinite;
+}
+
+
+/******************************************************************
+ *  App CSS
+ ******************************************************************/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+  font-family: Roboto, sans-serif;
+  color: black;
+  background: hsl(0, 0%, 100%);
+/*  background: #f7f7f7 url("../img/bg.png") repeat center top;*/
+}
+
+header {
+  position: relative;
+  padding-top: 10px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #222;
+  margin-top: 0;
+  margin-bottom: 3px;
+  color: #eee;
+  text-align: center;
+}
+
+.itemReview {
+  background-color: orange;
+  margin-top: 2px; 
+  margin-right: 10px;
+  margin-left: 4px;
+  border: 1px solid #666;
+}
+
+#txtTitle {
+  width: 95%;
+  margin: 5px 10px;
+  height: 25px;
+}
+
+#txtDescription {
+  width: 95%;
+  margin: 6px 10px;
+  height: 100px;
+  padding: 5px;
+}
+
+#imgImage {
+  width: 95%;
+  margin: 3px 10px;
+  height: 180px;
+}
+
+#picture_review {
+  height: 200px;
+}
+
+#btnSubmit {
+  width: 100%;
+  height: 80px;
+}
+
+.itemReview {
+  font-size: 17px;
+  line-height: 25px;
+  padding: 5px;
+  height: 70px;
+}
+
+#labelTitle {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.detail_obj {
+  width: 95%;
+  margin: 10px;
+}
+
+[data-role="page"] {
+  padding: 0;
+  margin: 0;  
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  background-color: white;
+  transform: translate3d(0, 100%, 0);
+  /*default position off the screen */
+}
+
+
+[data-role="page"] h2 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+[data-role="page"] h3 {
+  font-size: 2rem;
+}
+
+[data-role="page"] p {
+  font-size: 1.2rem;
+}
+
+nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.32);
+}
+
+nav a {
+  padding: 0.5rem 1rem;
+  width: 50%;
+  display: block;
+  float: left;
+  border: 1px solid #666;
+  border-bottom: none;
+  border-left: none;
+  text-align: center;
+  text-decoration: none;
+  background-color: #222;
+  color: #eee;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+nav a:last-child {
+  border-right: none;
+}
+
+.active-page {
+  animation: slide-top 0.6s 1;
+  animation-fill-mode: forwards;
+  z-index: 100;
+}
+
+.inactive-page {
+  animation: slide-right 0.6s 1;
+  animation-fill-mode: forwards;
+  z-index: 10;
+}
+
+@keyframes slide-top {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.rating-star {
+    color: #ccc;
+    text-align: center;
+    width: 35px;
+    line-height: 18px;
+    font-size: 35px;
+    float: left;
+}
+
+.rating {
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.li-head {
+  margin: 0;
+  text-decoration: none;
+}
+
+.li-sub {
+  margin: 0;
+  text-decoration: none;
+}
+
+.review-text {
+  padding: 10px;
+}
+
+.review-text {
+  padding: 5px;
+}
+
+#two::before {
+  content: '\2606';
+  color: red;
+}
+
+#two::after {
+  content: '\2605';
+  color: orange;
+}
+
+#one-star {
+  color: goldenrod;
+}
+
+
+/******************************************************************
+ *  ICONS CSS
+ ******************************************************************/
+
+.cameraButton {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cameraButton a:link,
+.cameraButton a:visited {
+  display: block;
+  text-decoration: none;
+  background-color: #f7f7f7;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#e7e7e7));
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #e7e7e7);
+  background-image: -moz-linear-gradient(top, #f7f7f7, #e7e7e7);
+  background-image: -ms-linear-gradient(top, #f7f7f7, #e7e7e7);
+  background-image: -o-linear-gradient(top, #f7f7f7, #e7e7e7);
+  color: #a7a7a7;
+  margin: 20px 60px;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+  border: solid 1px transparent;
+}
+
+.cameraButton a:before {
+  content: "";
+  display: block;
+  background: #fff;
+  border-top: 2px solid #ddd;
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  bottom: -18px;
+  right: -18px;
+  z-index: -1;
+  border-radius: 50%;
+  box-shadow: inset 0px 8px 48px #ddd;
+}
+
+.cameraButton a:active {
+  box-shadow: 0px 3px 4px #aaa inset, 0px 2px 3px #fff;
+}
+
+.cameraButton a:hover {
+  text-decoration: none;
+  color: #555;
+  background: #f5f5f5;
+}
+
+
+
+/*
+ *  Submit button
+ */
+ 
+
+input#btnConfirm {
+  padding: 5px 25px;
+  margin: 10px 10px;
+  /*add some padding to the inside of the button*/
+  background: #35b128;
+  /*the colour of the button*/
+  border: 1px solid #33842a;
+  /*required or the default border for the browser will appear*/
+  /*give the button curved corners, alter the size as required*/
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  /*give the button a drop shadow*/
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .75);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, .75);
+  box-shadow: 0 0 4px rgba(0, 0, 0, .75);
+  /*style the text*/
+  color: #f3f3f3;
+  font-size: 1.1em;
+  float: right;
+}
+
+
+/***NOW STYLE THE BUTTON'S HOVER AND FOCUS STATES***/
+
+input#btnConfirm:hover,
+input#btnConfirm:focus {
+  background-color: #399630;
+  /*make the background a little darker*/
+  /*reduce the drop shadow size to give a pushed button effect*/
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .75);
+  -moz-box-shadow: 0 0 1px rgba(0, 0, 0, .75);
+  box-shadow: 0 0 1px rgba(0, 0, 0, .75);
+}
+
+#reviewList {
+  padding-bottom: 4em;
+}

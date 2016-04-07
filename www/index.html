@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+
+  <!--<meta http-equiv="Content-Security-Policy" content=" img-src 'self' data:; default-src 'self' https://griffis.edumedia.ca 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src 'self' blob:">-->
+
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+  <title>Reviewer</title>
+</head>
+
+<body>
+  <!--  List (Main Page) - list show the list of reviews-->
+  <section data-role="page" id="list" class="inactive-page">
+    <header>
+      <p>Review List</p>
+    </header>
+    <div id="reviewList"></div>
+
+  </section>
+
+  <!--  Detail - show the detail of the review-->
+  <section data-role="page" id="detail" class="inactive-page">
+    <header>
+      <p>Detail</p>
+    </header>
+    <img src="" alt="Picture" class="detail_obj" id="picture_review">
+    <p id="labelTitle" class="detail_obj"></p>
+    <p id="labelDescription" class="detail_obj"></p>
+    <p id="stars" class="detail_obj"></p>
+  </section>
+
+  <!--  Add Review - Allow the user to take picture and write a review-->
+  <section data-role="page" id="add" class="inactive-page">
+    <header>
+      <p>Add Review</p>
+    </header>
+    <form>
+
+      <div class="cameraButton">
+        <a id="btnCamera" href="#">
+          <span class="fa fa-camera fa-2x"></span>
+        </a>
+      </div>
+
+      <img src="img/picture.png" alt="Take a picture" id="imgImage">
+      <input type="text" name="txtTitle" id="txtTitle" maxlength="40" placeholder="Title">
+      <textarea rows="10" cols="50" name="txtDescription" id="txtDescription" maxlength="255" text="Description"></textarea>  
+
+      <div class="rating" id="rating">
+        <span class="rating-star" data-value=1>&#x2605</span>
+        <span class="rating-star" data-value=2>&#x2605</span>
+        <span class="rating-star" data-value=3>&#x2605</span>
+        <span class="rating-star" data-value=4>&#x2605</span>
+        <span class="rating-star" data-value=5>&#x2605</span>       
+      </div>
+      
+      
+      <input id="btnConfirm" type="submit" value="Confirm" />
+    </form>
+  </section>
+  <nav>
+    <a href="#list" class="page-link"><i class="fa fa-comments"></i> Reviews</a>
+    <a href="#add" id="btnAdd" class="page-link"><i class="fa fa-plus-circle"></i> Add Review</a>
+  </nav>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+</body>
+
+</html>
